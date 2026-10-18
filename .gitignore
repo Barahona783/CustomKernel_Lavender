@@ -1,0 +1,19 @@
+# ==========================================
+# Exclusiones Git - CustomKernel Lavender
+# ==========================================
+
+# Archivos objeto y temporales de compilación
+*.o
+*.ko
+*.cmd
+*.d
+*.su
+*.tar.gz
+
+# Archivos de configuración locales
+.config
+.config.old
+
+# Carpeta de salida de binarios finales
+output/*
+!output/.gitkeep
