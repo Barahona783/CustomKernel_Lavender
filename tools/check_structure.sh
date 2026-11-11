@@ -1,12 +1,25 @@
 #!/bin/bash
 # ==========================================
-# Verificador de Estructura - CustomKernel
+# Verificador de Estructura Mejorado - CustomKernel
 # ==========================================
 
 echo "Verificando integridad del proyecto para Lavender..."
 
-if [ -f "Makefile" ] && [ -d "configs" ] && [ -d "tools" ] && [ -d "output" ]; then
-    echo "¡Estructura base correcta! Todos los directorios y archivos esenciales están presentes."
+# Validar directorios y archivos esenciales
+REQUIRED_DIRS=("configs" "tools" "output" "kernel-source")
+MISSING=0
+
+for dir in "${REQUIRED_DIRS[@]}"; do
+    if [ ! -d "$dir" ]; then
+        echo "[!] Advertencia: Falta el directorio requerido: $dir"
+        # Creamos automáticamente el directorio si no existe para prevenir errores
+        mkdir -p "$dir"
+        echo "[+] Directorio $dir creado automáticamente."
+    fi
+done
+
+if [ -f "Makefile" ] && [ -f "arch_base.mk" ]; then
+    echo "¡Estructura base correcta! Los archivos de arquitectura y makefiles están listos."
 else
-    echo "Advertencia: Falta algún componente en la estructura principal."
+    echo "[!] Advertencia: Faltan archivos clave de arquitectura en la raíz."
 fi

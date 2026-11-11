@@ -1,0 +1,17 @@
+#!/bin/sh
+# ==========================================
+# Proceso Init Personalizado - Lavender
+# ==========================================
+
+export PATH=/bin:/sbin:/usr/bin:/usr/sbin
+
+# 1. Montar los sistemas de archivos virtuales del kernel
+mount -t proc proc /proc
+mount -t sysfs sysfs /sys
+mount -t devtmpfs devtmpfs /dev
+
+echo "[*] ¡El kernel ha cedido el control al espacio de usuario!"
+echo "[*] Sistema operativo propio inicializado correctamente."
+
+# 2. Abrir shell interactiva de control
+exec /bin/sh

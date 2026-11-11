@@ -1,0 +1,20 @@
+#!/bin/bash
+# ==========================================
+# Descargador Automático de Shell (BusyBox ARM64)
+# ==========================================
+
+set -e
+
+ROOTFS_BIN="rootfs/bin"
+
+echo "[*] Asegurando la existencia de la carpeta $ROOTFS_BIN..."
+mkdir -p "$ROOTFS_BIN"
+
+echo "[*] Descargando el binario estático de BusyBox para ARM64..."
+# Descargamos una versión estable compilada estáticamente para arquitecturas arm64
+curl -L -o "$ROOTFS_BIN/sh" https://busybox.net/downloads/binaries/1.35.0-defconfig-multilib-musl/busybox_aarch64
+
+echo "[*] Dando permisos de ejecución al shell..."
+chmod +x "$ROOTFS_BIN/sh"
+
+echo "[✔] ¡Listo! El entorno de usuario ya cuenta con su binario /bin/sh funcional."
